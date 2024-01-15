@@ -52,8 +52,18 @@ class VideoPlayerModel : ObservableObject {
                         print("Error fetching videos: \(error)")
                 }
             }, receiveValue: { [self] videos in
-                self.videos = videos
-                currentVideo = videos.first
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                // sort the videos from most recent video to oldest based on published at
+                let sortedVideos = videos.sorted(by: { (video1, video2) -> Bool in
+                   if let date1 = dateFormatter.date(from: video1.publishedAt),
+                      let date2 = dateFormatter.date(from: video2.publishedAt) {
+                       return date1 > date2
+                   }
+                   return false
+                })
+                self.videos = sortedVideos
+                currentVideo = sortedVideos.first
                 // after getting video data, take video URL and attempt to load video into the AVPlayer
                 loadVideo(video: currentVideo)
                 // pause video on first load
