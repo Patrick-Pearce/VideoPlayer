@@ -34,12 +34,18 @@ struct VideoPlayerView: View {
                             ImageButton(imageName: "previous", circleSize: 50, imageSize: 30) {
                                 viewModel.playPreviousVideo()
                             }
-                            ImageButton(imageName: "play", circleSize: 80, imageSize: 60) {
+                            .disabled(viewModel.currentIndex == 0 || viewModel.videos.isEmpty)
+                            .opacity(viewModel.currentIndex == 0 || viewModel.videos.isEmpty ? 0.5 : 1.0)
+                            
+                            ImageButton(imageName: viewModel.isPlaying ? "play" : "pause", circleSize: 80, imageSize: 60) {
                                 viewModel.togglePlayPause()
                             }
+                            
                             ImageButton(imageName: "next", circleSize: 50, imageSize: 30) {
                                 viewModel.playNextVideo()
                             }
+                            .disabled(viewModel.currentIndex == viewModel.videos.count - 1 || viewModel.videos.isEmpty)
+                            .opacity(viewModel.currentIndex == viewModel.videos.count - 1 || viewModel.videos.isEmpty ? 0.5 : 1.0)
                         }
                     )
                 DetailsView(video: viewModel.currentVideo)

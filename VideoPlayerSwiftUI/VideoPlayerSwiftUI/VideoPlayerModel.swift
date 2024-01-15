@@ -56,6 +56,8 @@ class VideoPlayerModel : ObservableObject {
                 currentVideo = videos.first
                 // after getting video data, take video URL and attempt to load video into the AVPlayer
                 loadVideo(video: currentVideo)
+                // pause video on first load
+                togglePlayPause()
             })
             .store(in: &cancellables)
     }
