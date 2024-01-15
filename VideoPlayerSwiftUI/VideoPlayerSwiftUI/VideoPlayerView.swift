@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import MarkdownKit
+import AVKit
 
 struct VideoPlayerView: View {
     @ObservedObject private var viewModel = VideoPlayerModel()
@@ -24,11 +25,32 @@ struct VideoPlayerView: View {
                             .font(Font.system(size: 30.0))
                             .foregroundColor(.white)
                     )
+                
+                AVPlayerControllerRepresented(player: $viewModel.player)
+                    .frame(height: geometry.size.height * 0.30)
                 DetailsView(video: viewModel.currentVideo)
             }.onAppear {
                 viewModel.fetchVideos()
             }
         }
+    }
+}
+
+// need to make custom AVPlayer so that default controls can be hidden
+struct AVPlayerControllerRepresented : UIViewControllerRepresentable {
+    @Binding var player : AVPlayer
+    
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
+        let controller = AVPlayerViewController()
+        controller.player = player
+        // added to hide default media controls
+        controller.showsPlaybackControls = false
+        // added to remove black bars and have video fit full screen
+        controller.videoGravity = .resize
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
     }
 }
 

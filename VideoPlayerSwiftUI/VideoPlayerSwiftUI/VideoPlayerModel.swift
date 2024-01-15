@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AVKit
 
 // the model class interfaces with both the view and service classes
 // the view calls the model to request info from the service
@@ -14,6 +15,7 @@ import Combine
 class VideoPlayerModel : ObservableObject {
     @Published var videos: [Video] = []
     @Published var currentVideo: Video?
+    @Published var player: AVPlayer = AVPlayer()
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -27,10 +29,18 @@ class VideoPlayerModel : ObservableObject {
                     case .failure(let error):
                         print("Error fetching videos: \(error)")
                 }
-            }, receiveValue: { videos in
+            }, receiveValue: { [self] videos in
                 self.videos = videos
-                self.currentVideo = videos.first
+                currentVideo = videos.first
+                // after getting video data, take video URL and attempt to load video into the AVPlayer
+                loadVideo(urlString: currentVideo?.fullURL)
             })
             .store(in: &cancellables)
+    }
+    
+    private func loadVideo(urlString: String?) {
+        if let url = URL(string: urlString ?? "") {
+            self.player.replaceCurrentItem(with: AVPlayerItem(url: url))
+        }
     }
 }
