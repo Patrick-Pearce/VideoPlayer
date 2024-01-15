@@ -26,19 +26,19 @@ struct VideoPlayerView: View {
                             .foregroundColor(.white)
                     )
                 
-                AVPlayerControllerRepresented(player: $viewModel.player)
+                AVPlayerControllerRepresented(player: $viewModel.player, isPlaying: $viewModel.isPlaying)
                     .frame(height: geometry.size.height * 0.30)
                     .overlay(
                         // add media controls to custom AVPlayer
                         HStack(spacing: 15) {
                             ImageButton(imageName: "previous", circleSize: 50, imageSize: 30) {
-                                
+                                viewModel.playPreviousVideo()
                             }
                             ImageButton(imageName: "play", circleSize: 80, imageSize: 60) {
-                                
+                                viewModel.togglePlayPause()
                             }
                             ImageButton(imageName: "next", circleSize: 50, imageSize: 30) {
-                                
+                                viewModel.playNextVideo()
                             }
                         }
                     )
@@ -53,6 +53,7 @@ struct VideoPlayerView: View {
 // need to make custom AVPlayer so that default controls can be hidden
 struct AVPlayerControllerRepresented : UIViewControllerRepresentable {
     @Binding var player : AVPlayer
+    @Binding var isPlaying : Bool
     
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
@@ -65,6 +66,11 @@ struct AVPlayerControllerRepresented : UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+        if isPlaying {
+            uiViewController.player?.pause()
+        } else {
+            uiViewController.player?.play()
+        }
     }
 }
 

@@ -15,9 +15,31 @@ import AVKit
 class VideoPlayerModel : ObservableObject {
     @Published var videos: [Video] = []
     @Published var currentVideo: Video?
+    @Published var isPlaying: Bool = false
+    @Published var currentIndex: Int = 0
     @Published var player: AVPlayer = AVPlayer()
     
     private var cancellables: Set<AnyCancellable> = []
+    
+    func togglePlayPause() {
+        isPlaying.toggle()
+    }
+    
+    func playNextVideo() {
+        if currentIndex < videos.count - 1 {
+            currentIndex += 1
+            currentVideo = videos[currentIndex]
+            loadVideo(video: videos[currentIndex])
+        }
+    }
+
+    func playPreviousVideo() {
+        if currentIndex > 0 {
+            currentIndex -= 1
+            currentVideo = videos[currentIndex]
+            loadVideo(video: videos[currentIndex])
+        }
+    }
     
     func fetchVideos() {
         VideoService.shared.fetchVideosInfo()
@@ -33,13 +55,13 @@ class VideoPlayerModel : ObservableObject {
                 self.videos = videos
                 currentVideo = videos.first
                 // after getting video data, take video URL and attempt to load video into the AVPlayer
-                loadVideo(urlString: currentVideo?.fullURL)
+                loadVideo(video: currentVideo)
             })
             .store(in: &cancellables)
     }
     
-    private func loadVideo(urlString: String?) {
-        if let url = URL(string: urlString ?? "") {
+    private func loadVideo(video: Video?) {
+        if let url = URL(string: video?.fullURL ?? "") {
             self.player.replaceCurrentItem(with: AVPlayerItem(url: url))
         }
     }
