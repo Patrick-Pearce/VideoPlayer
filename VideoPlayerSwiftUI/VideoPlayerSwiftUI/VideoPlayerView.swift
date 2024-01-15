@@ -7,23 +7,27 @@
 
 import SwiftUI
 import Combine
+import MarkdownKit
 
 struct VideoPlayerView: View {
     @ObservedObject private var viewModel = VideoPlayerModel()
     
     var body : some View {
         // the title header of the app
-        VStack(spacing: 0) {
-            Rectangle()
-                .fill(Color.black)
-                .overlay(
-                    Text("Video Player")
-                        .font(Font.system(size: 30.0))
-                        .foregroundColor(.white)
-                )
-            DetailsView(video: viewModel.currentVideo)
-        }.onAppear {
-            viewModel.fetchVideos()
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                Rectangle()
+                    .fill(Color.black)
+                    .frame(height: geometry.size.height * 0.10)
+                    .overlay(
+                        Text("Video Player")
+                            .font(Font.system(size: 30.0))
+                            .foregroundColor(.white)
+                    )
+                DetailsView(video: viewModel.currentVideo)
+            }.onAppear {
+                viewModel.fetchVideos()
+            }
         }
     }
 }
@@ -40,7 +44,9 @@ struct DetailsView: View {
                 VStack(alignment: .leading) {
                     Text(video.title).font(font)
                     Text(video.author.name).font(font).padding(.bottom, 10)
-                    Text(video.description)
+                    let parser = MarkdownParser()
+                    let markdown = AttributedString(parser.parse(video.description))
+                    Text(markdown)
                 }.padding()
             } else {
                 Text("No video selected").font(font)
