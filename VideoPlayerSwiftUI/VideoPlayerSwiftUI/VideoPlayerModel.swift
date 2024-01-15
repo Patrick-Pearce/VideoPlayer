@@ -30,8 +30,6 @@ class VideoPlayerModel : ObservableObject {
             }, receiveValue: { videos in
                 self.videos = videos
                 self.currentVideo = videos.first
-                print(videos)
-
             })
             .store(in: &cancellables)
     }
