@@ -28,6 +28,20 @@ struct VideoPlayerView: View {
                 
                 AVPlayerControllerRepresented(player: $viewModel.player)
                     .frame(height: geometry.size.height * 0.30)
+                    .overlay(
+                        // add media controls to custom AVPlayer
+                        HStack(spacing: 15) {
+                            ImageButton(imageName: "previous", circleSize: 50, imageSize: 30) {
+                                
+                            }
+                            ImageButton(imageName: "play", circleSize: 80, imageSize: 60) {
+                                
+                            }
+                            ImageButton(imageName: "next", circleSize: 50, imageSize: 30) {
+                                
+                            }
+                        }
+                    )
                 DetailsView(video: viewModel.currentVideo)
             }.onAppear {
                 viewModel.fetchVideos()
@@ -73,6 +87,27 @@ struct DetailsView: View {
             } else {
                 Text("No video selected").font(font)
             }
+        }
+    }
+}
+
+struct ImageButton: View {
+    let imageName: String
+    let circleSize: CGFloat
+    let imageSize: CGFloat
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: {
+            action()
+        }) {
+            Image(systemName: "circle.fill")
+                .foregroundColor(.white)
+                .font(.system(size: circleSize))
+                .overlay(
+                    Image(uiImage: UIImage(named: imageName)!)
+                        .frame(width: imageSize, height: imageSize)
+                )
         }
     }
 }

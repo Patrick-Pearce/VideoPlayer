@@ -32,7 +32,9 @@ class VideoService {
     // fetches data from the server and maps it to the video struct
     // returns a publisher that publishes videos info or error
     func fetchVideosInfo() -> AnyPublisher<[Video], Error> {
-        let url = URL(string: "http://localhost:4000/videos")!
+        guard let url = URL(string: "http://localhost:4000/videos") else {
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        }
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: [Video].self, decoder: JSONDecoder())
