@@ -19,6 +19,9 @@
 		B47C25302B55B81900929F16 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C252F2B55B81900929F16 /* VideoPlayerView.swift */; };
 		B47C25322B55BE8900929F16 /* VideoPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C25312B55BE8900929F16 /* VideoPlayerModel.swift */; };
 		B47C25352B55C56100929F16 /* MarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = B47C25342B55C56100929F16 /* MarkdownKit */; };
+		B47C25372B55E62D00929F16 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C25362B55E62D00929F16 /* DetailsView.swift */; };
+		B47C25392B55E65800929F16 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C25382B55E65800929F16 /* ImageButton.swift */; };
+		B47C253B2B55E69000929F16 /* CustomAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C253A2B55E69000929F16 /* CustomAVPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		B47C252D2B55B59D00929F16 /* VideoPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerService.swift; sourceTree = "<group>"; };
 		B47C252F2B55B81900929F16 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		B47C25312B55BE8900929F16 /* VideoPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerModel.swift; sourceTree = "<group>"; };
+		B47C25362B55E62D00929F16 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		B47C25382B55E65800929F16 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		B47C253A2B55E69000929F16 /* CustomAVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAVPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,7 @@
 				B47C252D2B55B59D00929F16 /* VideoPlayerService.swift */,
 				B47C252F2B55B81900929F16 /* VideoPlayerView.swift */,
 				B47C25312B55BE8900929F16 /* VideoPlayerModel.swift */,
+				B47C253C2B55E6E400929F16 /* ViewComponents */,
 			);
 			path = VideoPlayerSwiftUI;
 			sourceTree = "<group>";
@@ -153,6 +160,16 @@
 				B47C25292B55B41200929F16 /* wireframe.png */,
 			);
 			path = TutorialInfo;
+			sourceTree = "<group>";
+		};
+		B47C253C2B55E6E400929F16 /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B47C25362B55E62D00929F16 /* DetailsView.swift */,
+				B47C25382B55E65800929F16 /* ImageButton.swift */,
+				B47C253A2B55E69000929F16 /* CustomAVPlayer.swift */,
+			);
+			path = ViewComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +313,10 @@
 				3AF67A5C25A64DBD00D360A7 /* VideoPlayerSwiftUIApp.swift in Sources */,
 				B47C252E2B55B59D00929F16 /* VideoPlayerService.swift in Sources */,
 				B47C25302B55B81900929F16 /* VideoPlayerView.swift in Sources */,
+				B47C25392B55E65800929F16 /* ImageButton.swift in Sources */,
 				B47C25322B55BE8900929F16 /* VideoPlayerModel.swift in Sources */,
+				B47C253B2B55E69000929F16 /* CustomAVPlayer.swift in Sources */,
+				B47C25372B55E62D00929F16 /* DetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
