@@ -17,6 +17,7 @@
 		B47C252C2B55B41200929F16 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B47C252A2B55B41200929F16 /* README.md */; };
 		B47C252E2B55B59D00929F16 /* VideoPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C252D2B55B59D00929F16 /* VideoPlayerService.swift */; };
 		B47C25302B55B81900929F16 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C252F2B55B81900929F16 /* VideoPlayerView.swift */; };
+		B47C25322B55BE8900929F16 /* VideoPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C25312B55BE8900929F16 /* VideoPlayerModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		B47C252A2B55B41200929F16 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B47C252D2B55B59D00929F16 /* VideoPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerService.swift; sourceTree = "<group>"; };
 		B47C252F2B55B81900929F16 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		B47C25312B55BE8900929F16 /* VideoPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				3AF67A6125A64DBF00D360A7 /* Preview Content */,
 				B47C252D2B55B59D00929F16 /* VideoPlayerService.swift */,
 				B47C252F2B55B81900929F16 /* VideoPlayerView.swift */,
+				B47C25312B55BE8900929F16 /* VideoPlayerModel.swift */,
 			);
 			path = VideoPlayerSwiftUI;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				3AF67A5C25A64DBD00D360A7 /* VideoPlayerSwiftUIApp.swift in Sources */,
 				B47C252E2B55B59D00929F16 /* VideoPlayerService.swift in Sources */,
 				B47C25302B55B81900929F16 /* VideoPlayerView.swift in Sources */,
+				B47C25322B55BE8900929F16 /* VideoPlayerModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

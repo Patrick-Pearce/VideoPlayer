@@ -9,9 +9,7 @@ import SwiftUI
 import Combine
 
 struct VideoPlayerView: View {
-    @State private var videos: [Video] = []
-    @State private var currentVideo: Video?
-    @State private var cancellables: Set<AnyCancellable> = []
+    @ObservedObject private var viewModel = VideoPlayerModel()
     
     var body : some View {
         // the title header of the app
@@ -24,26 +22,8 @@ struct VideoPlayerView: View {
                         .foregroundColor(.white)
                 )
                 .onAppear {
-                    fetchVideos()
+                    viewModel.fetchVideos()
                 }
         }
-    }
-    
-    private func fetchVideos() {
-        VideoService.shared.fetchVideosInfo()
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        print("Error fetching videos: \(error)")
-                }
-            }, receiveValue: { videos in
-                self.videos = videos
-                self.currentVideo = videos.first
-                print(videos)
-
-            })
-            .store(in: &cancellables)
     }
 }
